@@ -12,4 +12,4 @@
 */
 
 
-Route::get('/dashboard', 'schoolSystemController@inbox');
+Route::get('/', 'schoolSystemController@inbox');
