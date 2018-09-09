@@ -12,4 +12,7 @@
 */
 
 
-Route::get('/', 'schoolSystemController@inbox');
+Route::get('/dashboard', 'schoolSystemController@inbox');
+Route::any('/', 'schoolSystemController@log');
+Route::any('/reg', 'schoolSystemController@regis');
+
