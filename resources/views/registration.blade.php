@@ -17,6 +17,9 @@
                                 </ul>
                                 </div>
                             @endif
+							@if(Session::has('message'))
+                                <p class="alert {{ Session::get('alert', 'alert-success') }}">{{ Session::get('message') }}</p>
+                            @endif
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-6 form-group">
@@ -62,7 +65,10 @@
 						<label>Email Address</label>
 						<input type="email" placeholder="Enter Email Address Here.." class="form-control" name="email">
 					</div>	
-					
+					<div class="form-group">
+						<label>Password</label>
+						<input type="password" placeholder="Enter Password." class="form-control" name="password">
+					</div>
 					<input type="submit" class="btn btn-lg btn-info" value="Submit">				
 					</div>
 				</form> 
