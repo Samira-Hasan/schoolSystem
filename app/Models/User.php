@@ -1,9 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+         'email', 'password',
     ];
 
     /**
@@ -26,4 +27,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function setUser()
+    {
+        return DB::table('users')
+            ->select('email', 'password')
+            ->take(10)
+            ->orderBy('users.id', 'Asc')
+            ->get()->toArray();
+    }
+
+    public static function userEmail($email, $password)
+    {
+        return DB::select("SELECT * FROM `users` WHERE email = '$email' AND password = '$password'");
+    }
 }
+

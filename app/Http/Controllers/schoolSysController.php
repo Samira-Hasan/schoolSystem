@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
-use App\User;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Mail;
 use Session;
+use Illuminate\Support\Facades\Hash;
 
 class schoolSystemController extends Controller
 {
@@ -19,23 +21,27 @@ class schoolSystemController extends Controller
     { 
         if ($request->isMethod('post'))   
         {
-            //echo '<pre>';print_r($_POST);die();
+           // echo '<pre>';print_r($_POST);die();
             $validator = Validator::make($request->all(), [
                 'email' => 'required',
-                'pass' => 'required',
+                'password' => 'required',
                 ]);
                 if ($validator->fails()) {
                     return redirect('/')
                                 ->withErrors($validator)
                                 ->withInput();
                 }
-                return redirect('/');
 
-                $User = new User;
-                $User->email = $request->email;
-                $User->password = $request->pass;
-                $User->save();
-           // echo '<pre>';print_r($_POST);die();
+                $credentials = $request->only('email', 'password');
+
+                if (Auth::attempt($credentials)) {
+            
+                return redirect()->intended('/dashboard');
+                //echo '<pre>';print_r($user);die();
+                }
+                
+         
+           
       }
            return view('login');
   } 
@@ -74,7 +80,7 @@ class schoolSystemController extends Controller
                         $User->father_name = $request->father;
                         $User->mother_name = $request->mother;
                         $User->phone = $request->phone;
-                        $User->password = $request->password;
+                        $User->password = Hash::make($request->password);
                         $User->email = $request->email;
                         
                         $User->save();

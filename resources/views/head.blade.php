@@ -13,4 +13,8 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
+    
+    <script src="{{ asset('js/jquery.min.js')}}"></script>
+    
   </head>

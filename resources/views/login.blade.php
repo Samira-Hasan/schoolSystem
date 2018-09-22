@@ -63,7 +63,7 @@
 <label class="user"> Password </label>
 <div class="input-group">
 	<span class="input-group-addon" id="iconn1"> <i class="glyphicon glyphicon-lock"></i></span>
-<input type="password" class="form-control" id="text2" name="pass" placeholder=" Enter Password" value="">
+<input type="password" class="form-control" id="text2" name="password" placeholder=" Enter Password" value="">
 </div>
 </div>
 
